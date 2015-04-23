@@ -1,0 +1,37 @@
+User:
+  first_name: string
+  last_name: string
+  graduation_year: string
+  school_id: integer
+  classes_id: integer
+
+Tutor:
+  first_name: string
+  last_name: string
+  graduation_year: string
+  school_id: integer
+  major: string
+  minor: string
+  classes_id: integer
+  hourly_rate: integer
+  times_id: integer
+
+School:
+  name: string
+  location: string
+
+Term:
+  name: string
+
+Classes:
+  name: string
+  course_number: string
+  year_taken: string
+  term_id: integer
+  school_id: integer
+
+Times:
+  day: string
+  time: string
+
+
