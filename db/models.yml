@@ -1,21 +1,4 @@
-User:
-  first_name: string
-  last_name: string
-  graduation_year: string
-  school_id: integer
-  classes_id: integer
-
-Tutor:
-  first_name: string
-  last_name: string
-  graduation_year: string
-  school_id: integer
-  major: string
-  minor: string
-  classes_id: integer
-  hourly_rate: integer
-  times_id: integer
-
+# Create the classes
 School:
   name: string
   location: string
@@ -30,8 +13,18 @@ Classes:
   term_id: integer
   school_id: integer
 
-Times:
-  day: string
-  time: string
+# Create the tutors and students
+Person:
+  first_name: string
+  last_name: string
+  graduation_year: string
+  school_id: integer
 
+Tutor:
+  person_id: integer
+  classes_id: integer
 
+Student:
+  person_id: integer
+  classes_id: integer
+  rate: integer

@@ -1,0 +1,9 @@
+<div class="row">
+	<% @people.each do |person| %>
+		<div class="col-sm-6">
+			<div class="thumbnail">
+				<p><a href = "/people/<%=person.id%>"><%=person.first_name%> <%=person.last_name%></a></p>
+			</div>
+		</div>
+	<% end %>
+</div>

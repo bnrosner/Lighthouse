@@ -1,0 +1,18 @@
+<h1><%=@person.first_name%> <%=@person.last_name%></h1>
+
+<h3>Classes can tutor for:</h3>
+<% @tutor.each do |tutor| %>
+	<% classes = Classes.find_by(id: tutor.classes_id) %>
+	<% term = Term.find_by(id: classes.term_id) %>
+	<% school = School.find_by(id: classes.school_id) %>
+	<p><%=classes.name%> (<%=classes.course_number%>) at <%=school.name%> during the <%=term.name%> of <%=classes.year_taken%></p>
+<%end%>
+
+<p></p>
+<h3>Classes looking for a tutor in:</h3>
+<% @student.each do |student| %>
+	<% classes = Classes.find_by(id: student.classes_id) %>
+	<% term = Term.find_by(id: classes.term_id) %>
+	<% school = School.find_by(id: classes.school_id) %>
+	<p><%=classes.name%> (<%=classes.course_number%>) at <%=school.name%> during the <%=term.name%> of <%=classes.year_taken%></p>
+<%end%>
