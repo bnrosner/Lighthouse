@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
-  get '/people', to: 'people#index'
-  get '/people/:id', to: 'people#show'
+  resources :people
+
+  root to: "people#index"
 
 end

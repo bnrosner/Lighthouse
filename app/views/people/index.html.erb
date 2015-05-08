@@ -1,9 +1,16 @@
-<div class="row">
-	<% @people.each do |person| %>
-		<div class="col-sm-6">
-			<div class="thumbnail">
-				<p><a href = "/people/<%=person.id%>"><%=person.first_name%> <%=person.last_name%></a></p>
-			</div>
-		</div>
-	<% end %>
-</div>
+<h3 class="page-header">
+  All People
+  <span class="pull-right">
+    <p><%= link_to "New Person", new_person_path, class: 'btn btn-sm btn-success' %></p>
+  </span>
+</h3>
+
+<ul>
+  <% @people.each do |person| %>
+    <li>
+      <%= link_to person.first_name + " " + person.last_name, person_url(person)%>
+      <%= link_to "Edit", edit_person_url(person) %>
+      <%= link_to "Delete", person_url(person), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
+    </li>
+  <% end %>
+</ul>
