@@ -5,8 +5,11 @@ class StudentsController < ApplicationController
   end
 
   def create
-    @student = Student.create(params["student"])
+    @student = Student.new
+    @student.user_id = session["user_id"]
+    @student.course_id = params["student"]["course_id"]
     if @student.valid?
+      @student.save
       redirect_to courses_url, notice: "Great, you added a class to your profile!!!"
     else
       render "new"
