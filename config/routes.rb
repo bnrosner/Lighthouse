@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   
-  resources :people
+  resources :users
+  resources :courses
+  resources :students
+  resources :tutors
+  resources :schools
+  resources :sessions
 
-  root to: "people#index"
+  get "/logout", to: "sessions#destroy"
+
+  root to: "courses#index"
 
 end

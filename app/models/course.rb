@@ -1,4 +1,4 @@
-class Person < ActiveRecord::Base
+class Course < ActiveRecord::Base
   belongs_to :school
   has_many :tutors
   has_many :students

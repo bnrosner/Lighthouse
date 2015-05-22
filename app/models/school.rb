@@ -1,4 +1,4 @@
 class School < ActiveRecord::Base
-  has_many :persons
-  has_many :classes
+  has_many :users
+  has_many :courses
 end

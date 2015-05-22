@@ -3,28 +3,23 @@ School:
   name: string
   location: string
 
-Term:
-  name: string
-
-Classes:
+Course:
   name: string
   course_number: string
-  year_taken: string
-  term_id: integer
   school_id: integer
 
 # Create the tutors and students
-Person:
-  first_name: string
-  last_name: string
+User:
+  name: string
   graduation_year: string
   school_id: integer
+  email: string
+  password_digest: string
 
 Tutor:
-  person_id: integer
-  classes_id: integer
+  user_id: integer
+  course_id: integer
 
 Student:
-  person_id: integer
-  classes_id: integer
-  rate: integer
+  user_id: integer
+  course_id: integer

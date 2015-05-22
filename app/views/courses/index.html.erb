@@ -1,0 +1,21 @@
+<h3 class="page-header">
+  All Classes
+  <span class="pull-right">
+    <p>
+      <%= link_to "New Class", new_course_path, class: 'btn btn-sm btn-success' %>
+      <%= link_to "Become a Student", new_student_path, class: 'btn btn-sm btn-success' %>
+      <%= link_to "Become a Tutor", new_tutor_path, class: 'btn btn-sm btn-success' %>
+      <%= link_to "Add a School", new_school_path, class: 'btn btn-sm btn-success' %>
+    </p>
+  </span>
+</h3>
+
+<ul>
+  <% @courses.each do |course| %>
+    <li>
+      <%= link_to course.name, course_url(course)%>
+      <%= link_to "Edit", edit_course_url(course) %>
+      <%= link_to "Delete", course_url(course), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
+    </li>
+  <% end %>
+</ul>

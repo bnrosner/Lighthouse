@@ -1,4 +1,4 @@
 class Student < ActiveRecord::Base
-  belongs_to :person
-  belongs_to :classes
+  belongs_to :user
+  belongs_to :course
 end

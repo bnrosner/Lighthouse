@@ -1,0 +1,12 @@
+<h1><%=@course.name%> at <%=@course.school.name%></h1>
+
+<h3>Tutors:</h3>
+<% @course.tutors.each do |tutor| %>
+	<p><%=tutor.user.try(:name)%></p>
+<%end%>
+
+<p></p>
+<h3>Students:</h3>
+<% @course.students.each do |student| %>
+	<p><%=student.user.try(:name)%></p>
+<%end%>

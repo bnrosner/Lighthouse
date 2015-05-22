@@ -1,0 +1,12 @@
+<h1><%=@user.name%></h1>
+
+<h3>Courses can tutor for:</h3>
+<% @user.tutors.each do |tutor| %>
+	<p><%=tutor.course.name%> (<%=tutor.course.course_number%>) at <%=tutor.course.school.name%></p>
+<%end%>
+
+<p></p>
+<h3>Courses looking for a tutor in:</h3>
+<% @user.students.each do |student| %>
+	<p><%=student.course.name%> (<%=student.course.course_number%>) at <%=student.course.school.name%></p>
+<%end%>

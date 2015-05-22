@@ -13,25 +13,13 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "classes", force: true do |t|
+  create_table "courses", force: true do |t|
     t.string  "name"
     t.string  "course_number"
-    t.string  "year_taken"
-    t.integer "term_id"
     t.integer "school_id"
   end
 
-  add_index "classes", ["school_id"], name: "index_classes_on_school_id"
-  add_index "classes", ["term_id"], name: "index_classes_on_term_id"
-
-  create_table "people", force: true do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "graduation_year"
-    t.integer "school_id"
-  end
-
-  add_index "people", ["school_id"], name: "index_people_on_school_id"
+  add_index "courses", ["school_id"], name: "index_courses_on_school_id"
 
   create_table "schools", force: true do |t|
     t.string "name"
@@ -39,24 +27,29 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "students", force: true do |t|
-    t.integer "person_id"
-    t.integer "classes_id"
-    t.integer "rate"
+    t.integer "user_id"
+    t.integer "course_id"
   end
 
-  add_index "students", ["classes_id"], name: "index_students_on_classes_id"
-  add_index "students", ["person_id"], name: "index_students_on_person_id"
-
-  create_table "terms", force: true do |t|
-    t.string "name"
-  end
+  add_index "students", ["course_id"], name: "index_students_on_course_id"
+  add_index "students", ["user_id"], name: "index_students_on_user_id"
 
   create_table "tutors", force: true do |t|
-    t.integer "person_id"
-    t.integer "classes_id"
+    t.integer "user_id"
+    t.integer "course_id"
   end
 
-  add_index "tutors", ["classes_id"], name: "index_tutors_on_classes_id"
-  add_index "tutors", ["person_id"], name: "index_tutors_on_person_id"
+  add_index "tutors", ["course_id"], name: "index_tutors_on_course_id"
+  add_index "tutors", ["user_id"], name: "index_tutors_on_user_id"
+
+  create_table "users", force: true do |t|
+    t.string  "graduation_year"
+    t.integer "school_id"
+    t.string  "name"
+    t.string  "email"
+    t.string  "password_digest"
+  end
+
+  add_index "users", ["school_id"], name: "index_users_on_school_id"
 
 end
