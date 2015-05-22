@@ -5,8 +5,11 @@ class TutorsController < ApplicationController
   end
 
   def create
-    @tutor = Tutor.create(params["tutor"])
+    @tutor = Tutor.new
+    @tutor.user_id = session["user_id"]
+    @tutor.course_id = params["tutor"]["course_id"]
     if @tutor.valid?
+      @tutor.save
       redirect_to courses_url, notice: "Great, you became a tutor for a class!!!"
     else
       render "new"
