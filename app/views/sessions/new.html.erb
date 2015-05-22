@@ -35,38 +35,15 @@
 <body>
 
 <div class = "container">
-
+  <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
    <!-- Alerts -->
       <% if notice %>
         <div class="alert alert-success" role="alert"><%= notice %></div>
       <% end %>
       <% if alert %>
         <div class="alert alert-danger" role="alert"><%= alert %></div>
-      <% end %>
+      <% end %> 
 
-
-  <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-    <h1>Title</h1>
-    <div class="panel panel-info" >
-      <div class="panel-heading">
-        <div class="panel-title">Sign In</div>
-        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
-      </div>                    
-    
-      <div style="padding-top:30px" class="panel-body" >
-      <%= form_tag sessions_path, class: "form-signin" do %>
-          <div style="margin-bottom: 25px" class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <%= text_field_tag :email, "", class: "form-control", placeholder: "Email Address" %>
-            <%= password_field_tag :password, "", class: "form-control", placeholder: "Password" %>
-            <%= button_tag "Sign In", class: "btn btn-lg btn-primary btn-block" %>
-    <% end %>
-  </div>
-</div>
-</body>
-
-<div class="container">    
-  <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
     <div class="panel panel-info" >
         <div class="panel-heading">
           <div class="panel-title">Sign In</div>
