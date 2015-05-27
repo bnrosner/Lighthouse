@@ -15,6 +15,7 @@ User:
   school_id: integer
   email: string
   password_digest: string
+  admin: boolean
 
 Tutor:
   user_id: integer

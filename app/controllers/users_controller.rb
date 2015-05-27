@@ -3,13 +3,21 @@ class UsersController < ApplicationController
   layout false, only: [:new, :create]
 
   def index
-    @users = User.all
+    if current_user.admin?
+      @users = User.all
+    else
+      redirect_to root_path, alert: "Nice try buddy"
+    end
   end
 
   def show
-    @user = User.find_by(id: params["id"])
-    @tutor = Tutor.where(User_id: params["id"])
-    @student = Student.where(User_id: params["id"])
+    if current_user.admin?
+      @user = User.find_by(id: params["id"])
+      @tutor = Tutor.where(User_id: params["id"])
+      @student = Student.where(User_id: params["id"])
+    else
+      redirect_to root_path, alert: "Nice try buddy"
+    end
   end
 
   def new
@@ -19,7 +27,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(params["user"])
     if @user.valid?
-      redirect_to users_url, notice: "Great, you created a user!!!"
+      redirect_to users_url, notice: "Great, you registered!!!"
     else
       render "new"
     end

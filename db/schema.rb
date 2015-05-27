@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "name"
     t.string  "email"
     t.string  "password_digest"
+    t.boolean "admin",           default: false
   end
 
   add_index "users", ["school_id"], name: "index_users_on_school_id"

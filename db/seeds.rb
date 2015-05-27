@@ -26,16 +26,16 @@ writing = Course.create(name: "Writing", course_number: "WRI101", school_id: nor
 
 # Create the users
 puts "Creating users..."
-benne_rosner = User.create(name: "Benne Rosner", graduation_year: "2011", school_id: northwestern.id, email: "bnrosner@gmail.com", password: "hannah")
-bob_smith = User.create(name: "Bob Smith", graduation_year: "2018", school_id: northwestern.id)
-joe_shmoe = User.create(name: "Joe Shmoe", graduation_year: "2019", school_id: northwestern.id)
-jeff_kwong = User.create(name: "Jeff Kwong", graduation_year: "2017", school_id: northwestern.id)
-josh_rosner = User.create(name: "Josh Rosner", graduation_year: "2012", school_id: northwestern.id)
-brian_eng = User.create(name: "Brian Eng", graduation_year: "2015", school_id: northwestern.id)
-uwe_reinhardt = User.create(name: "Uwe Reinhardt", graduation_year: "2013", school_id: northwestern.id)
-nikhil_bt = User.create(name: "Nikhil Basu Trivedi", graduation_year: "2013", school_id: northwestern.id)
-shawn_kothari = User.create(name: "Shawn Kothari", graduation_year: "2013", school_id: northwestern.id)
-moran_cerf = User.create(name: "Moran Cerf", graduation_year: "2013", school_id: northwestern.id)
+benne_rosner = User.create(name: "Benne Rosner", graduation_year: "2011", school_id: northwestern.id, email: "bnrosner@gmail.com", password: "hannah", admin: true)
+bob_smith = User.create(name: "Bob Smith", graduation_year: "2018", school_id: northwestern.id, email: "bobsmith@gmail.com", password: "password", admin: false)
+joe_shmoe = User.create(name: "Joe Shmoe", graduation_year: "2019", school_id: northwestern.id, email: "joeshmoe@gmail.com", password: "password", admin: false)
+jeff_kwong = User.create(name: "Jeff Kwong", graduation_year: "2017", school_id: northwestern.id, email: "jeffkwong@gmail.com", password: "password", admin: false)
+josh_rosner = User.create(name: "Josh Rosner", graduation_year: "2012", school_id: northwestern.id, email: "joshrosner@gmail.com", password: "password", admin: false)
+brian_eng = User.create(name: "Brian Eng", graduation_year: "2015", school_id: northwestern.id, email: "brianeng@gmail.com", password: "password", admin: false)
+uwe_reinhardt = User.create(name: "Uwe Reinhardt", graduation_year: "2013", school_id: northwestern.id, email: "uwereinhardt@gmail.com", password: "password", admin: false)
+nikhil_bt = User.create(name: "Nikhil Basu Trivedi", graduation_year: "2013", school_id: northwestern.id, email: "nikhilbt@gmail.com", password: "password", admin: false)
+shawn_kothari = User.create(name: "Shawn Kothari", graduation_year: "2013", school_id: northwestern.id, email: "shawnkothari@gmail.com", password: "password", admin: false)
+moran_cerf = User.create(name: "Moran Cerf", graduation_year: "2013", school_id: northwestern.id, email: "morancerf@gmail.com", password: "password", admin: false)
 
 # Create the tutors
 puts "Creating tutors..."
@@ -54,4 +54,4 @@ Student.create(user_id: joe_shmoe.id, course_id: computer_science.id)
 Student.create(user_id: jeff_kwong.id, course_id: physics.id)
 Student.create(user_id: josh_rosner.id, course_id: writing.id)
 
-puts "There are now #{School.count} schools, #{Course.count} courses, #{User.count} users, #{Tutor.count} tutor-class options and #{Student.count} student-class options in the database."
+puts "There are now #{School.count} schools, #{Course.count} courses, #{User.count} users, #{Tutor.count} tutors and #{Student.count} students in the database."
