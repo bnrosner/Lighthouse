@@ -1,0 +1,9 @@
+<%= form_for @school do |form| %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+    <%= form.label :location %>
+    <%= form.text_field :location, class: "form-control" %>
+  </div>
+  <%= form.button 'Update School', class: "btn btn-success" %>
+<% end %>

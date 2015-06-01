@@ -14,8 +14,12 @@
   <% @courses.each do |course| %>
     <li>
       <%= link_to course.name, course_url(course)%>
-      <%= link_to "Edit", edit_course_url(course) %>
-      <%= link_to "Delete", course_url(course), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
+      <% if current_user.admin? %>
+        <%= link_to "Edit", edit_course_url(course) %>
+      <% end %>
+      <% if current_user.admin? %>
+        <%= link_to "Delete", course_url(course), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
+      <% end %>
     </li>
   <% end %>
 </ul>
