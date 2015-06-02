@@ -1,7 +1,7 @@
 <h3 class="page-header">
   All Users
   <span class="pull-right">
-    <p><%= link_to "New User", new_user_path, class: 'btn btn-sm btn-success' %></p>
+    <p><%= link_to "New User", new_user_path, class: 'btn btn-sm btn-info' %></p>
   </span>
 </h3>
 
@@ -9,7 +9,7 @@
   <% @users.each do |user| %>
     <li>
       <%= link_to user.name, user_url(user)%>
-      <%= link_to "Edit", edit_user_url(user) %>
+      <%= link_to "Edit", edit_user_url(user), class:"btn btn-sm btn-info" %>
       <%= link_to "Delete", user_url(user), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
     </li>
   <% end %>

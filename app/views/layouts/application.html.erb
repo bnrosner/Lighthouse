@@ -68,12 +68,13 @@
                   <li><%= link_to "New User", new_user_path %></li>
                   <li><%= link_to "Schools", schools_path %></li>
                   <li><%= link_to "New School", new_school_path %></li>
+                  <li><%= link_to "New Class", new_course_path %></li>
                 </ul>
               </li>
             <% end %>
 
             <% if current_user %>
-              <li><%= link_to current_user.try(:name) %></li>
+              <li><%= link_to current_user.try(:name), edit_user_url(current_user) %></li>
               <li><%= link_to "Logout", logout_url %></li>
             <% else %>
               <li><%= link_to "Sign In", new_session_url %></li>

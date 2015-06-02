@@ -9,10 +9,6 @@ Student.delete_all
 # Create the schools
 puts "Creating schools..."
 northwestern = School.create(name: "Northwestern", location: "Evanston, Illinois")
-princeton = School.create(name: "Princeton", location: "Princeton, New Jersey")
-stanford = School.create(name: "Stanford", location: "Palo Alto, California")
-berkeley = School.create(name: "UC Berkeley", location: "Berkeley, California")
-harvard = School.create(name: "Harvard", location: "Cambridge, Massachusetts")
 
 # Create the courses
 puts "Creating courses..."

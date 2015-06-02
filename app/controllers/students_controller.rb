@@ -2,6 +2,8 @@ class StudentsController < ApplicationController
 
   def new
     @student = Student.new
+    @user = User.find_by(id: session["user_id"])
+    @courses = Course.where(school_id: @user.school_id)
   end
 
   def create

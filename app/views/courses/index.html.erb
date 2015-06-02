@@ -19,7 +19,7 @@
     </li>
   <% end %>
 <% else %>
-  <h3> Enrolled Classes </h3>
+  <h3> I need help in: </h3>
   <% @user.students.each do |student| %>
     <li>
       <%= link_to student.course.name, course_url(student.course) %>
@@ -33,7 +33,7 @@
       <%= link_to "Delete", student_url(student), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
     </li>
   <% end %>
-  <h3> Tutoring Classes </h3>
+  <h3> I can tutor in: </h3>
   <% @user.tutors.each do |tutor| %>
     <li>
       <%= link_to tutor.course.name, course_url(tutor.course) %>

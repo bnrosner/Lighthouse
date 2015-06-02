@@ -2,7 +2,7 @@ class SchoolsController < ApplicationController
  
   def index
     if current_user.admin?
-      @users = School.all
+      @schools = School.all
     else
       redirect_to root_path, alert: "Nice try buddy"
     end
