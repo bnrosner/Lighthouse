@@ -6,6 +6,12 @@
     <%= form.text_field :graduation_year, class: "form-control" %>
     <%= form.label :school_id %>
     <%= form.collection_select(:school_id, School.all, :id, :name, {}, {class: "form-control"})%>
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "form-control" %>
+    <%= form.label :password %>
+    <%= form.password_field :password, class: "form-control" %>
+    <%= form.label :admin %>
+    <%= form.check_box :admin %>
   </div>
   <%= form.button 'Update User', class: "btn btn-success" %>
 <% end %>

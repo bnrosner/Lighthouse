@@ -20,7 +20,9 @@ User:
 Tutor:
   user_id: integer
   course_id: integer
+  available: boolean
 
 Student:
   user_id: integer
   course_id: integer
+  available: boolean

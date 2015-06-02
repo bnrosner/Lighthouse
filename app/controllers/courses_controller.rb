@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+    @user = User.find_by(id: session["user_id"])
   end
 
   def show

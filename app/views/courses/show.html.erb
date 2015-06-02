@@ -1,5 +1,5 @@
 <h1><%=@course.name%> at <%=@course.school.name%></h1>
-
+        
 <h3>Tutors:</h3>
 <% @course.tutors.each do |tutor| %>
 	<p><%=tutor.user.try(:name)%></p>

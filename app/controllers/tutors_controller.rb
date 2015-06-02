@@ -16,6 +16,17 @@ class TutorsController < ApplicationController
     end
   end
 
+  def edit
+    @tutor = Tutor.find_by(id: params["id"])
+  end
+
+  def update
+    @tutor = Tutor.find_by(id: params["id"])
+    @tutor.available = params["tutor"]["available"]
+    @tutor.save
+    redirect_to courses_url
+  end
+
   def destroy
     @tutor = Tutor.find_by(id: params["id"])
     @tutor.delete

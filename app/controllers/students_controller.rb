@@ -16,10 +16,20 @@ class StudentsController < ApplicationController
     end
   end
 
+  def edit
+    @student = Student.find_by(id: params["id"])
+  end
+
+  def update
+    @student = Student.find_by(id: params["id"])
+    @student.available = params["student"]["available"]
+    @student.save
+    redirect_to courses_url
+  end
+
   def destroy
     @student = Student.find_by(id: params["id"])
     @student.delete
     redirect_to courses_url
   end
-
 end
