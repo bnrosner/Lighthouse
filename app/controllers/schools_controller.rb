@@ -1,18 +1,19 @@
 class SchoolsController < ApplicationController
- 
+  before_action :find_school, except: [:index, :new, :create]
+
   def index
     if current_user.admin?
       @schools = School.all
     else
-      redirect_to root_path, alert: "Nice try buddy"
+      redirect_root_path
     end
   end
 
   def show
     if current_user.admin?
-      @school = School.find_by(id: params["id"])
+      find_school
     else
-      redirect_to root_path, alert: "Nice try buddy"
+      redirect_root_path
     end
   end
 
@@ -20,7 +21,7 @@ class SchoolsController < ApplicationController
     if current_user.admin?
       @school = School.new
     else
-      redirect_to root_path, alert: "Nice try buddy"
+      redirect_root_path
     end
   end
 
@@ -33,27 +34,32 @@ class SchoolsController < ApplicationController
         render "new"
       end
     else
-      redirect_to root_path, alert: "Nice try buddy"
+      redirect_root_path
     end
   end
 
   def edit
-    @school = School.find_by(id: params["id"])
+    find_school
   end
 
   def update
-    @school = School.find_by(id: params["id"])
+    find_school
     @school.update(params["school"])
     redirect_to schools_url
   end
 
   def destroy
     if current_user.admin?
-      @school = School.find_by(id: params["id"])
+      find_school
       @school.delete
       redirect_to schools_url
     else
-      redirect_to root_path, alert: "Nice try buddy"
+      redirect_root_path
     end
   end
+
+  def find_school
+    @school = School.find_by(id: params["id"])
+  end
+
 end

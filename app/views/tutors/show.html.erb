@@ -1,0 +1,18 @@
+<h1><%=@tutor.user.name%> at <%=@tutor.user.school.name%></h1>
+ <div class="row">
+  <div class="col-md-7 col-md-offset-3">
+    <h3>Reviews</h3>
+    <% @tutor.reviews.each do |review| %>
+      <h4>
+        <%= review.user.name %> 
+        <% review.rating.times do %>
+          <i class="fa fa-star"></i>
+        <% end %>
+      </h4>
+      <p><%= review.body %></p>
+    <% end %>
+
+    <%= link_to "Write a Review", new_tutor_review_url(@tutor), class: 'btn btn-success' %>
+  </div>
+</div>       
+<h3>

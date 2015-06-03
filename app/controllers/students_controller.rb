@@ -1,8 +1,9 @@
 class StudentsController < ApplicationController
+  before_action :find_student, except: [:new, :create]
 
   def new
     @student = Student.new
-    @user = User.find_by(id: session["user_id"])
+    @user = current_user
     @courses = Course.where(school_id: @user.school_id)
   end
 
@@ -19,19 +20,23 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    @student = Student.find_by(id: params["id"])
+    find_student
   end
 
   def update
-    @student = Student.find_by(id: params["id"])
+    find_student
     @student.available = params["student"]["available"]
     @student.save
     redirect_to courses_url
   end
 
   def destroy
-    @student = Student.find_by(id: params["id"])
+    find_student
     @student.delete
     redirect_to courses_url
+  end
+
+  def find_student
+    @student = Student.find_by(id: params["id"])
   end
 end

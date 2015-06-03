@@ -18,31 +18,29 @@
       <%= link_to "Delete", course_url(course), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
     </li>
   <% end %>
+
 <% else %>
   <h3> I need help in: </h3>
   <% @user.students.each do |student| %>
     <li>
       <%= link_to student.course.name, course_url(student.course) %>
       <% if student.available %>
-        <% status = "Status: Available" %>
-        <%= link_to status, edit_student_url(student), class:"btn btn-sm btn-success"%>
+        <%= link_to "Status: Available", edit_student_url(student), class:"btn btn-sm btn-success"%>
       <% else %>
-        <% status = "Status: Not Available" %>
-        <%= link_to status, edit_student_url(student), class:"btn btn-sm btn-default"%>
+        <%= link_to "Status: Not Available", edit_student_url(student), class:"btn btn-sm btn-default"%>
       <% end %>
       <%= link_to "Delete", student_url(student), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
     </li>
   <% end %>
+
   <h3> I can tutor in: </h3>
   <% @user.tutors.each do |tutor| %>
     <li>
       <%= link_to tutor.course.name, course_url(tutor.course) %>
       <% if tutor.available %>
-        <% status = "Status: Available" %>
-        <%= link_to status, edit_tutor_url(tutor), class:"btn btn-sm btn-success"%>
+        <%= link_to "Status: Available", edit_tutor_url(tutor), class:"btn btn-sm btn-success"%>
       <% else %>
-        <% status = "Status: Not Available" %>
-        <%= link_to status, edit_tutor_url(tutor), class:"btn btn-sm btn-default"%>
+        <%= link_to "Status: Not Available", edit_tutor_url(tutor), class:"btn btn-sm btn-default"%>
       <% end %>
       <%= link_to "Delete", tutor_url(tutor), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
     </li>

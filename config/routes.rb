@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :users
   resources :courses
   resources :students
-  resources :tutors
+  resources :tutors do
+  	resources :reviews
+  end
   resources :schools
   resources :sessions
 

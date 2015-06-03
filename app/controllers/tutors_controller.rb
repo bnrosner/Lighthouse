@@ -1,8 +1,13 @@
 class TutorsController < ApplicationController
+  before_action :find_tutor, except: [:new, :create]
+
+  def show
+    @tutor = find_tutor
+  end
 
   def new
     @tutor = Tutor.new
-    @user = User.find_by(id: session["user_id"])
+    @user = current_user
     @courses = Course.where(school_id: @user.school_id)
   end
 
@@ -19,19 +24,23 @@ class TutorsController < ApplicationController
   end
 
   def edit
-    @tutor = Tutor.find_by(id: params["id"])
+    find_tutor
   end
 
   def update
-    @tutor = Tutor.find_by(id: params["id"])
+    find_tutor
     @tutor.available = params["tutor"]["available"]
     @tutor.save
     redirect_to courses_url
   end
 
   def destroy
-    @tutor = Tutor.find_by(id: params["id"])
+    find_tutor
     @tutor.delete
     redirect_to courses_url
+  end
+
+  def find_tutor
+    @tutor = Tutor.find_by(id: params["id"])
   end
 end

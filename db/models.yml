@@ -26,3 +26,9 @@ Student:
   user_id: integer
   course_id: integer
   available: boolean
+
+Review:
+  tutor_id: integer
+  user_id: integer
+  rating: integer
+  body: text

@@ -6,14 +6,4 @@
   </div>
 <% end %>
 
-<%= form_for @course do |form| %>
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control" %>
-    <%= form.label :course_number %>
-    <%= form.text_field :course_number, class: "form-control" %>
-    <%= form.label :school_id %>
-    <%= form.collection_select(:school_id, School.all, :id, :name, {}, {class: "form-control"})%>
-  </div>
-  <%= form.button 'Add Course', class: "btn btn-success" %>
-<% end %>
+<%= render "form" %>
