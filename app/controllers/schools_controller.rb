@@ -1,5 +1,4 @@
 class SchoolsController < ApplicationController
-  before_action :find_school, except: [:index, :new, :create]
 
   def index
     if current_user.admin?

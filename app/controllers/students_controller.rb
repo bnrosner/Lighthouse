@@ -1,10 +1,8 @@
 class StudentsController < ApplicationController
-  before_action :find_student, except: [:new, :create]
 
   def new
     @student = Student.new
-    @user = current_user
-    @courses = Course.where(school_id: @user.school_id)
+    find_courses_at_school
   end
 
   def create
@@ -21,6 +19,7 @@ class StudentsController < ApplicationController
 
   def edit
     find_student
+    find_courses_at_school
   end
 
   def update
@@ -39,4 +38,10 @@ class StudentsController < ApplicationController
   def find_student
     @student = Student.find_by(id: params["id"])
   end
+
+  def find_courses_at_school
+    @user = current_user
+    @courses = Course.where(school_id: @user.school_id)
+  end
+
 end

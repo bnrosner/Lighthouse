@@ -1,6 +1,6 @@
 <% if @course.errors.any? %>
   <div class = "alert alert-warning" role="alert">
-  <% @ccourse.errors.full_messages.each do |message| %>
+  <% @course.errors.full_messages.each do |message| %>
     <%= message %><br>
   <% end %>
   </div>

@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-  before_action :find_course, except: [:index, :new, :create]
 
   def index
     @courses = Course.all
