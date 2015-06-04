@@ -1,49 +1,73 @@
-<h3 class="page-header">
-  All Classes
-  <span class="pull-right">
-    <p>
-      <%= link_to "Become a Student", new_student_path, class: 'btn btn-sm btn-info' %>
-      <%= link_to "Become a Tutor", new_tutor_path, class: 'btn btn-sm btn-info' %>
-    </p>
-  </span>
-</h3>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-header"><center> 
+      <font size="6">All Classes</font>
+      <p></p>
+      <p>
+        <%= link_to "Become a Student", new_student_path, class: 'btn btn-group btn-warning' %>
+        <%= link_to "Become a Tutor", new_tutor_path, class: 'btn btn-group btn-warning' %>
+      </p>
+    </center></h3>
+  </div>
+</div>
 
-<ul>
+<div class="row">
+  <div class="col-md-1"></div>
 
-<!-- View for Administrators -->
-<% if current_user.admin? %>
-  <% @courses.each do |course| %>
-    <li>
-      <%= link_to course.name, course_url(course) %>
-      <%= link_to "Edit", edit_course_url(course), class:"btn btn-sm btn-default" %>
-      <%= link_to "Delete", course_url(course), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
-    </li>
-  <% end %>
+  <div class="col-md-4">
+  <ul>
+  <!-- View for Administrators -->
+  <% if current_user.admin? %>
+    <% @courses.each do |course| %>
+      <li>
+        <%= link_to course.name, course_url(course) %>
+        <span class="pull-right">
+          <%= link_to "Edit", edit_course_url(course), class:"btn btn-sm btn-default" %>
+          <%= link_to "Delete", course_url(course), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
+        </span>
+      </li>
+    <% end %>
 
-<!-- View for Users -->
-<% else %>
-<!-- Classes Need Help In -->
-  
-  <h3> I need help in: </h3>
-  <% @user.students.each do |student| %>
-    <li>
-      <%= link_to student.course.name, course_url(student.course) %>
-      <%= link_to "Delete", student_url(student), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
-    </li>
-  <% end %>
-
-  <!-- Classes Can Tutor In -->
-  <h3> I can tutor in: </h3>
-  <% @user.tutors.each do |tutor| %>
-    <li>
-      <%= link_to tutor.course.name, tutor_url(tutor) %>
-      <% if tutor.available %>
-        <%= link_to "Status: Available", edit_tutor_url(tutor), class:"btn btn-sm btn-success"%>
-      <% else %>
-        <%= link_to "Status: Not Available", edit_tutor_url(tutor), class:"btn btn-sm btn-default"%>
+  <!-- View for Users -->
+  <% else %>
+  <!-- Classes Need Help In -->
+    <div class="panel panel-info">
+      <div class="panel-heading"><h3> I need help in: </h3></div>
+      <div class="panel-body">
+      <% @user.students.each do |student| %>
+        <p>
+          <font size="3"><%= link_to student.course.name, course_url(student.course) %></font>
+          <span class="pull-right">
+            <%= link_to "Delete", student_url(student), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
+          </span>
+        </p>
       <% end %>
-      <%= link_to "Delete", tutor_url(tutor), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
-    </li>
-  <% end %> 
+      </div>
+  </div>
+  </div>
+  
+  <div class="col-md-2"></div>
+
+  <div class="col-md-4">  
+    <div class="panel panel-info">
+    <!-- Classes Can Tutor In -->
+    <div class="panel-heading"><h3> I can tutor in: </h3></div>
+      <div class="panel-body">
+      <% @user.tutors.each do |tutor| %>
+        <p>
+          <font size="3"><%= link_to tutor.course.name, tutor_url(tutor) %></font>
+          <span class="pull-right">
+            <% if tutor.available %>
+              <%= link_to "Status: Available", edit_tutor_url(tutor), class:"btn btn-sm btn-success"%>
+            <% else %>
+              <%= link_to "Status: Not Available", edit_tutor_url(tutor), class:"btn btn-sm btn-default"%>
+            <% end %>
+            <%= link_to "Delete", tutor_url(tutor), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
+          </span>
+        </p>
+      <% end %> 
+      </div>
+    </div>
+  <div class="col-md-1"></div>    
 <% end %>
 </ul>
