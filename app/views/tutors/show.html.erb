@@ -12,7 +12,9 @@
       <p><%= review.body %></p>
     <% end %>
 
-    <%= link_to "Write a Review", new_tutor_review_url(@tutor), class: 'btn btn-success' %>
+    <% if current_user.id != @tutor.user_id %>
+      <%= link_to "Write a Review", new_tutor_review_url(@tutor), class: 'btn btn-success' %>
+    <% end %>
   </div>
 </div>       
 <h3>
