@@ -12,11 +12,10 @@
 
 <!-- View for Administrators -->
 <% if current_user.admin? %>
-  <h3> All Classes </h3>
   <% @courses.each do |course| %>
     <li>
       <%= link_to course.name, course_url(course) %>
-      <%= link_to "Edit", edit_course_url(course) %>
+      <%= link_to "Edit", edit_course_url(course), class:"btn btn-sm btn-default" %>
       <%= link_to "Delete", course_url(course), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
     </li>
   <% end %>
@@ -24,6 +23,7 @@
 <!-- View for Users -->
 <% else %>
 <!-- Classes Need Help In -->
+  
   <h3> I need help in: </h3>
   <% @user.students.each do |student| %>
     <li>
@@ -36,11 +36,12 @@
       <%= link_to "Delete", student_url(student), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
     </li>
   <% end %>
+
   <!-- Classes Can Tutor In -->
   <h3> I can tutor in: </h3>
   <% @user.tutors.each do |tutor| %>
     <li>
-      <%= link_to tutor.course.name, course_url(tutor.course) %>
+      <%= link_to tutor.course.name, tutor_url(tutor) %>
       <% if tutor.available %>
         <%= link_to "Status: Available", edit_tutor_url(tutor), class:"btn btn-sm btn-success"%>
       <% else %>

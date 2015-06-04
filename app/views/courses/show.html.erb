@@ -8,13 +8,3 @@
     <% end %>
   </p>
 <%end%>
-
-<p></p>
-<h3>Available Students:</h3>
-<% @course.students.each do |student| %>
-	<p>
-    <% if student.available %>
-	  	<%=student.user.try(:name)%>
-	  <% end %>
-	</p>
-<%end%>

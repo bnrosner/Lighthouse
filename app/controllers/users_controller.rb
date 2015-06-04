@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     if current_user.admin?
       @user = current_user
-      @tutor = Tutor.where(user_id: current_user.id])
+      @tutor = Tutor.where(user_id: current_user.id)
       @student = Student.where(user_id: current_user.id)
     else
       redirect_root_path

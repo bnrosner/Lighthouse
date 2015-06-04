@@ -7,14 +7,14 @@ class TutorsController < ApplicationController
 
   def new
     @tutor = Tutor.new
-    @user = current_user
-    @courses = Course.where(school_id: @user.school_id)
+    find_courses_at_school
   end
 
   def create
     @tutor = Tutor.new
     @tutor.user_id = session["user_id"]
     @tutor.course_id = params["tutor"]["course_id"]
+    @tutor.available = params["tutor"]["available"]
     if @tutor.valid?
       @tutor.save
       redirect_to courses_url, notice: "Great, you became a tutor for a class!!!"
@@ -25,6 +25,7 @@ class TutorsController < ApplicationController
 
   def edit
     find_tutor
+    find_courses_at_school
   end
 
   def update
@@ -43,4 +44,10 @@ class TutorsController < ApplicationController
   def find_tutor
     @tutor = Tutor.find_by(id: params["id"])
   end
+
+  def find_courses_at_school
+    @user = current_user
+    @courses = Course.where(school_id: @user.school_id)
+  end
+
 end
