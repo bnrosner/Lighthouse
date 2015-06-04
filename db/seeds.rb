@@ -44,10 +44,10 @@ Tutor.create(user_id: moran_cerf.id, course_id: physics.id, available: true)
 
 # Create the students
 puts "Creating students..."
-Student.create(user_id: benne_rosner.id, course_id: macro_econ.id, available: true)
-Student.create(user_id: bob_smith.id, course_id: physics.id, available: true)
-Student.create(user_id: joe_shmoe.id, course_id: computer_science.id, available: true)
-Student.create(user_id: jeff_kwong.id, course_id: physics.id, available: true)
-Student.create(user_id: josh_rosner.id, course_id: writing.id, available: true)
+Student.create(user_id: benne_rosner.id, course_id: macro_econ.id)
+Student.create(user_id: bob_smith.id, course_id: physics.id)
+Student.create(user_id: joe_shmoe.id, course_id: computer_science.id)
+Student.create(user_id: jeff_kwong.id, course_id: physics.id)
+Student.create(user_id: josh_rosner.id, course_id: writing.id)
 
 puts "There are now #{School.count} schools, #{Course.count} courses, #{User.count} users, #{Tutor.count} tutors and #{Student.count} students in the database."

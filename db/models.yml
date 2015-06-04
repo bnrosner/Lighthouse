@@ -25,7 +25,6 @@ Tutor:
 Student:
   user_id: integer
   course_id: integer
-  available: boolean
 
 Review:
   tutor_id: integer
