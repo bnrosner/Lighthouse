@@ -28,11 +28,6 @@
   <% @user.students.each do |student| %>
     <li>
       <%= link_to student.course.name, course_url(student.course) %>
-      <% if student.available %>
-        <%= link_to "Status: Available", edit_student_url(student), class:"btn btn-sm btn-success"%>
-      <% else %>
-        <%= link_to "Status: Not Available", edit_student_url(student), class:"btn btn-sm btn-default"%>
-      <% end %>
       <%= link_to "Delete", student_url(student), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
     </li>
   <% end %>
