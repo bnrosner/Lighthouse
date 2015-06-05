@@ -23,7 +23,7 @@
       <div class="panel-body">
         <% @courses.each do |course| %>
           <ul>
-            <font size="3"><%= link_to course.name, course_url(course) %></font>
+            <font size="2"><%= link_to course.name, course_url(course) %></font>
             <span class="pull-right">
               <%= link_to "Edit", edit_course_url(course), class:"btn btn-sm btn-default" %>
               <%= link_to "Delete", course_url(course), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
@@ -42,7 +42,7 @@
       <div class="panel-body">
       <% @user.students.each do |student| %>
         <p>
-          <font size="3"><%= link_to student.course.name, course_url(student.course) %></font>
+          <font size="2"><%= link_to student.course.name, course_url(student.course) %></font>
           <span class="pull-right">
             <%= link_to "Delete", student_url(student), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
           </span>
@@ -61,12 +61,12 @@
       <div class="panel-body">
       <% @user.tutors.each do |tutor| %>
         <p>
-          <font size="3"><%= link_to tutor.course.name, tutor_url(tutor) %></font>
+          <font size="2"><%= link_to tutor.course.name, tutor_url(tutor) %></font>
           <span class="pull-right">
             <% if tutor.available %>
-              <%= link_to "Status: Available", edit_tutor_url(tutor), class:"btn btn-sm btn-success"%>
+              <%= link_to "Status: Available", tutor_url(tutor), method:  :patch, class:"btn btn-sm btn-success"%>
             <% else %>
-              <%= link_to "Status: Not Available", edit_tutor_url(tutor), class:"btn btn-sm btn-default"%>
+              <%= link_to "Status: Not Available", tutor_url(tutor), method:  :patch, class:"btn btn-sm btn-default"%>
             <% end %>
             <%= link_to "Delete", tutor_url(tutor), method:  :delete, class:"btn btn-sm btn-danger", data: {confirm: "Seriously?"} %>
           </span>

@@ -23,14 +23,13 @@ class TutorsController < ApplicationController
     end
   end
 
-  def edit
-    find_tutor
-    find_courses_at_school
-  end
-
   def update
     find_tutor
-    @tutor.available = params["tutor"]["available"]
+    if @tutor.available
+      @tutor.available = false
+    else
+      @tutor.available = true
+    end
     @tutor.save
     redirect_to courses_url
   end
