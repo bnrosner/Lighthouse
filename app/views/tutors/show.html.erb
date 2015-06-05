@@ -1,20 +1,31 @@
-<h1><%=@tutor.user.name%> at <%=@tutor.user.school.name%></h1>
- <div class="row">
-  <div class="col-md-7 col-md-offset-0">
-    <h3>Reviews for <%=@tutor.course.name%></h3>
-    <% @tutor.reviews.each do |review| %>
-      <h4>
-        <%= review.user.name %> 
-        <% review.rating.times do %>
-          <i class="fa fa-star"></i>
-        <% end %>
-      </h4>
-      <p><%= review.body %></p>
-    <% end %>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-header"><center> 
+      <font size="6"><%=@tutor.user.name%> at <%=@tutor.user.school.name%></font>
+    </center></h3>
+  </div>
+</div>
 
-    <% if current_user.id != @tutor.user_id %>
-      <%= link_to "Write a Review", new_tutor_review_url(@tutor), class: 'btn btn-success' %>
-    <% end %>
+<div class="row">
+  <div class="col-md-4"></div>
+
+  <div class="col-md-4">
+  <div class="panel panel-info">
+    <div class="panel-heading"><h3>Reviews for <%=@tutor.course.name%></h3></div>
+    <div class="panel-body">
+      <% @tutor.reviews.each do |review| %>
+        <h4>
+          <%= review.user.name %> 
+          <% review.rating.times do %>
+            <i class="fa fa-star"></i>
+          <% end %>
+        </h4>
+        <p><%= review.body %></p>
+      <% end %>
+
+      <% if current_user.id != @tutor.user_id %>
+        <%= link_to "Write a Review", new_tutor_review_url(@tutor), class: 'btn btn-success' %>
+      <% end %>
+    </div>
   </div>
 </div>       
-<h3>
