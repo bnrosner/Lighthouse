@@ -1,0 +1,15 @@
+<% if @message.errors.any? %>
+  <div class="alert alert-warning" role="alert">
+    <% @message.errors.full_messages.each do |message| %>
+      <%= message %><br>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_for [@tutor, @message] do |form| %>
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: "form-control" %>
+  </div>
+  <%= form.button 'Post', class: "btn btn-success" %>
+<% end %>

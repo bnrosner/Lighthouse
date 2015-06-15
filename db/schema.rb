@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_index "courses", ["school_id"], name: "index_courses_on_school_id"
 
+  create_table "messages", force: true do |t|
+    t.integer "student_id"
+    t.integer "tutor_id"
+    t.text    "body"
+  end
+
+  add_index "messages", ["student_id"], name: "index_messages_on_student_id"
+  add_index "messages", ["tutor_id"], name: "index_messages_on_tutor_id"
+
   create_table "reviews", force: true do |t|
     t.integer "tutor_id"
     t.integer "user_id"

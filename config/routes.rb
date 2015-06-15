@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :students
   resources :tutors do
   	resources :reviews
+    resources :messages
   end
   resources :schools
   resources :sessions

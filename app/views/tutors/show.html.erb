@@ -7,9 +7,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-4"></div>
-
-  <div class="col-md-4">
+  <div class="col-md-6">
   <div class="panel panel-info">
     <div class="panel-heading"><h3>Reviews for <%=@tutor.course.name%></h3></div>
     <div class="panel-body">
@@ -25,6 +23,20 @@
 
       <% if current_user.id != @tutor.user_id %>
         <%= link_to "Write a Review", new_tutor_review_url(@tutor), class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+  <div class="panel panel-info">
+    <div class="panel-heading"><h3>Messages with <%=@tutor.user.name%></h3></div>
+    <div class="panel-body">
+      <% @tutor.messages.each do |message| %>
+        <p><%= message.student.user.name%>: <%= message.body %></p>
+      <% end %>
+
+      <% if current_user.id != @tutor.user_id %>
+        <%= link_to "Chat", new_tutor_message_url(@tutor), class: 'btn btn-success' %>
       <% end %>
     </div>
   </div>

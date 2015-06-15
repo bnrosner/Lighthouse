@@ -31,3 +31,8 @@ Review:
   user_id: integer
   rating: integer
   body: text
+
+Message:
+  student_id: integer
+  tutor_id: integer
+  body: text
