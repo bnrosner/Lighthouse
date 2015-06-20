@@ -1,14 +1,20 @@
-# Create the classes
+# Create the school, course, homework and questions
 School:
   name: string
-  location: string
 
 Course:
   name: string
-  course_number: string
   school_id: integer
 
-# Create the tutors and students
+Homework:
+  name: string
+  course_id: integer
+  num_questions: integer
+
+Question:
+  homework_id: integer
+
+# Create the student and student homework submission
 User:
   name: string
   graduation_year: string
@@ -17,22 +23,14 @@ User:
   password_digest: string
   admin: boolean
 
-Tutor:
-  user_id: integer
-  course_id: integer
-  available: boolean
-
 Student:
   user_id: integer
   course_id: integer
 
-Review:
-  tutor_id: integer
-  user_id: integer
-  rating: integer
-  body: text
-
-Message:
+HWSubmission:
   student_id: integer
-  tutor_id: integer
-  body: text
+  homework_id: integer
+
+QuestionSubmission:
+  hwsubmission_id: integer
+  completed: boolean

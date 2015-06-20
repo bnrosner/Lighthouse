@@ -15,34 +15,42 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "courses", force: true do |t|
     t.string  "name"
-    t.string  "course_number"
     t.integer "school_id"
   end
 
   add_index "courses", ["school_id"], name: "index_courses_on_school_id"
 
-  create_table "messages", force: true do |t|
+  create_table "homeworks", force: true do |t|
+    t.string  "name"
+    t.integer "course_id"
+    t.integer "num_questions"
+  end
+
+  add_index "homeworks", ["course_id"], name: "index_homeworks_on_course_id"
+
+  create_table "hw_submissions", force: true do |t|
     t.integer "student_id"
-    t.integer "tutor_id"
-    t.text    "body"
+    t.integer "homework_id"
   end
 
-  add_index "messages", ["student_id"], name: "index_messages_on_student_id"
-  add_index "messages", ["tutor_id"], name: "index_messages_on_tutor_id"
+  add_index "hw_submissions", ["homework_id"], name: "index_hw_submissions_on_homework_id"
+  add_index "hw_submissions", ["student_id"], name: "index_hw_submissions_on_student_id"
 
-  create_table "reviews", force: true do |t|
-    t.integer "tutor_id"
-    t.integer "user_id"
-    t.integer "rating"
-    t.text    "body"
+  create_table "question_submissions", force: true do |t|
+    t.integer "hwsubmission_id"
+    t.boolean "completed",       default: false
   end
 
-  add_index "reviews", ["tutor_id"], name: "index_reviews_on_tutor_id"
-  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
+  add_index "question_submissions", ["hwsubmission_id"], name: "index_question_submissions_on_hwsubmission_id"
+
+  create_table "questions", force: true do |t|
+    t.integer "homework_id"
+  end
+
+  add_index "questions", ["homework_id"], name: "index_questions_on_homework_id"
 
   create_table "schools", force: true do |t|
     t.string "name"
-    t.string "location"
   end
 
   create_table "students", force: true do |t|
@@ -53,19 +61,10 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "students", ["course_id"], name: "index_students_on_course_id"
   add_index "students", ["user_id"], name: "index_students_on_user_id"
 
-  create_table "tutors", force: true do |t|
-    t.integer "user_id"
-    t.integer "course_id"
-    t.boolean "available", default: false
-  end
-
-  add_index "tutors", ["course_id"], name: "index_tutors_on_course_id"
-  add_index "tutors", ["user_id"], name: "index_tutors_on_user_id"
-
   create_table "users", force: true do |t|
+    t.string  "name"
     t.string  "graduation_year"
     t.integer "school_id"
-    t.string  "name"
     t.string  "email"
     t.string  "password_digest"
     t.boolean "admin",           default: false
