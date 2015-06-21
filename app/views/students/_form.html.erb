@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <h3 class="page-header"><center> 
-      <font size="6">Become a Student at <%=current_user.school.name%></font>
+      <font size="6">Join a class</font>
     </center></h3>
   </div>
 </div>
@@ -9,25 +9,22 @@
 <%= form_for @student do |form| %>
 <div class = "container">
   <div class="row">
-  	<div class="col-md-4"></div>
-  	<div class="col-md-4">
-          
-    <div class="panel panel-info" >
-      <div class="panel-heading">
-        <div class="panel-title">Student</div>
-      </div>     
+  	<div class="col-md-12">
+      <div class="panel panel-info" >
+        <div class="panel-heading">
+          <div class="panel-title">Class</div>
+        </div>     
 
-      <div style="padding-top:5px" class="panel-body" >
-      <!-- <div style="margin-bottom: 55px" class="input-group"> -->
-      	<%= form.label :course_id %>
-    	<%= form.collection_select(:course_id, @courses, :id, :name, {}, {class: "form-control"})%>
- 	                      
-	    <div style="margin-top:25px" class="form-group">
-	      <%= form.submit class: "btn btn-lg btn-primary btn-block" %>
-	    </div>
+        <div style="padding-top:5px" class="panel-body" >
+        	<%= form.label :course_id %>
+      	  <%= form.collection_select(:course_id, @courses, :id, :name, {}, {class: "form-control"})%>
+   	                      
+    	    <div style="margin-top:25px" class="form-group">
+    	      <%= form.submit class: "btn btn-lg btn-primary btn-block" %>
+    	    </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <% end %>

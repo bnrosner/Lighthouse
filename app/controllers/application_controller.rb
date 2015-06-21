@@ -17,8 +17,4 @@ class ApplicationController < ActionController::Base
   	User.find_by(id: session["user_id"])
   end
 
-  def redirect_root_path
-    redirect_to root_path, alert: "Nice try buddy"
-  end
-
 end

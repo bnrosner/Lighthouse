@@ -1,8 +1,14 @@
 class StudentsController < ApplicationController
 
+  def index
+    @user = current_user
+    @students = Student.where(user_id: @user.id)
+  end
+
   def new
     @student = Student.new
-    find_courses_at_school
+    @user = current_user
+    @courses = Course.where(school_id: @user.school_id)
   end
 
   def create
@@ -11,37 +17,19 @@ class StudentsController < ApplicationController
     @student.course_id = params["student"]["course_id"]
     if @student.valid?
       @student.save
-      redirect_to courses_url, notice: "Great, you added a class to your profile!!!"
+      redirect_to root_path, notice: "Great, you added a class to your profile!!!"
     else
       render "new"
     end
   end
 
-  def edit
-    find_student
-    find_courses_at_school
-  end
-
-  def update
-    find_student
-    @student.available = params["student"]["available"]
-    @student.save
-    redirect_to courses_url
-  end
-
   def destroy
     find_student
     @student.delete
-    redirect_to courses_url
+    redirect_to root_path
   end
 
   def find_student
     @student = Student.find_by(id: params["id"])
   end
-
-  def find_courses_at_school
-    @user = current_user
-    @courses = Course.where(school_id: @user.school_id)
-  end
-
 end

@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "users", force: true do |t|
     t.string  "name"
-    t.string  "graduation_year"
     t.integer "school_id"
     t.string  "email"
     t.string  "password_digest"

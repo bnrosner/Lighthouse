@@ -1,0 +1,14 @@
+<h3 class="page-header">
+  My Classes
+  <span class="pull-right">
+    <p><%= link_to "Add a Class", new_student_path, class: 'btn btn-sm btn-success' %></p>
+  </span>
+</h3>
+
+<ul>
+  <% @students.each do |student| %>
+    <li>
+      <%= link_to student.course.name, student_url(student)%>
+    </li>
+  <% end %>
+</ul>

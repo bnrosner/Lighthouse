@@ -1,26 +1,10 @@
 class SchoolsController < ApplicationController
 
-  def index
-    if current_user.admin?
-      @schools = School.all
-    else
-      redirect_root_path
-    end
-  end
-
-  def show
-    if current_user.admin?
-      find_school
-    else
-      redirect_root_path
-    end
-  end
-
   def new
     if current_user.admin?
       @school = School.new
     else
-      redirect_root_path
+      redirect_root_path, notice: "Nice try, buddy"
     end
   end
 
@@ -38,22 +22,30 @@ class SchoolsController < ApplicationController
   end
 
   def edit
-    find_school
+    if current_user.admin?
+      find_school
+    else
+      redirect_root_path, notice: "Nice try, buddy"
+    end
   end
 
   def update
-    find_school
-    @school.update(params["school"])
-    redirect_to schools_url
+    if current_user.admin?
+      find_school
+      @school.update(params["school"])
+      redirect_to root_path
+    else
+      redirect_root_path, notice: "Nice try, buddy"
+    end
   end
 
   def destroy
     if current_user.admin?
       find_school
       @school.delete
-      redirect_to schools_url
+      redirect_to root_path
     else
-      redirect_root_path
+      redirect_root_path, notice: "Nice try, buddy"
     end
   end
 

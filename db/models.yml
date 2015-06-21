@@ -14,15 +14,15 @@ Homework:
 Question:
   homework_id: integer
 
-# Create the student and student homework submission
+# Create the user
 User:
   name: string
-  graduation_year: string
   school_id: integer
   email: string
   password_digest: string
   admin: boolean
 
+# Create the student and homework submission
 Student:
   user_id: integer
   course_id: integer
