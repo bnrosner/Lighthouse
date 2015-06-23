@@ -10,6 +10,7 @@ Homework:
   name: string
   course_id: integer
   num_questions: integer
+  current: boolean
 
 Question:
   homework_id: integer

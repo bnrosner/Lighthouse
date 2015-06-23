@@ -5,6 +5,11 @@ class StudentsController < ApplicationController
     @students = Student.where(user_id: @user.id)
   end
 
+  def show
+    find_student
+    @course = Course.find_by(id: @student.course_id)
+  end
+
   def new
     @student = Student.new
     @user = current_user

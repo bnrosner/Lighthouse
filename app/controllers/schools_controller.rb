@@ -1,10 +1,14 @@
 class SchoolsController < ApplicationController
 
+  def index
+    @schools = School.all
+  end
+
   def new
     if current_user.admin?
       @school = School.new
     else
-      redirect_root_path, notice: "Nice try, buddy"
+      redirect_to root_path, alert: "Nice try buddy"
     end
   end
 
@@ -17,7 +21,7 @@ class SchoolsController < ApplicationController
         render "new"
       end
     else
-      redirect_root_path
+      redirect_to root_path, alert: "Nice try buddy"
     end
   end
 
@@ -25,7 +29,7 @@ class SchoolsController < ApplicationController
     if current_user.admin?
       find_school
     else
-      redirect_root_path, notice: "Nice try, buddy"
+      redirect_to root_path, alert: "Nice try buddy"
     end
   end
 
@@ -35,7 +39,7 @@ class SchoolsController < ApplicationController
       @school.update(params["school"])
       redirect_to root_path
     else
-      redirect_root_path, notice: "Nice try, buddy"
+      redirect_to root_path, alert: "Nice try buddy"
     end
   end
 
@@ -43,9 +47,9 @@ class SchoolsController < ApplicationController
     if current_user.admin?
       find_school
       @school.delete
-      redirect_to root_path
+      redirect_to root_path, alert: "Nice try buddy"
     else
-      redirect_root_path, notice: "Nice try, buddy"
+      redirect_to root_path, alert: "Nice try buddy"
     end
   end
 

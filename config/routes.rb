@@ -1,21 +1,14 @@
 Rails.application.routes.draw do
   
   resources :schools do
-    resources :courses do
-      resources :homeworks do
-        resources :questions
-      end
-    end
+    resources :courses
   end
-
+  resources :homeworks
+  resources :questions
   resources :users
-  
-  resources :students do
-    resources :hwsubmissions do
-      resources :questionsubmissions
-    end
-  end
-
+  resources :students
+  resources :hwsubmissions
+  resources :questionsubmissions
   resources :sessions
 
   get "/logout", to: "sessions#destroy"
