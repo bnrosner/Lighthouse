@@ -1,8 +1,11 @@
 class CoursesController < ApplicationController
-before_action :find_school, except: :index
 
   def index
   	# ....
+  end
+
+  def show
+    @course = Course.find_by(id: params["id"])
   end
 
   def new
@@ -17,10 +20,6 @@ before_action :find_school, except: :index
     else
       render "new"
     end
-  end
-
-  def find_school
-  	@school = School.find_by(id: params["school_id"])
   end
 
 

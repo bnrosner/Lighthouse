@@ -8,6 +8,7 @@ class StudentsController < ApplicationController
   def show
     find_student
     @course = Course.find_by(id: @student.course_id)
+    @students = Student.where(course_id: @course.id)
   end
 
   def new

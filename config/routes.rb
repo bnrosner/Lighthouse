@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :schools do
-    resources :courses
+  resources :schools
+  resources :courses do
+    resources :homeworks do
+      resources :questions
+    end
   end
-  resources :homeworks
-  resources :questions
   resources :users
   resources :students
   resources :hwsubmissions

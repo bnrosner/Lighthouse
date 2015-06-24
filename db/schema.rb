@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "name"
     t.integer "course_id"
     t.integer "num_questions"
+    t.boolean "active",        default: false
   end
 
   add_index "homeworks", ["course_id"], name: "index_homeworks_on_course_id"
