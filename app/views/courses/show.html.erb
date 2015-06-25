@@ -5,3 +5,7 @@
       <%= link_to "Add Homework", new_course_homework_url(@course), class: 'btn btn-sm btn-success' %>
   </span>
 </h3>
+
+<% @course.homeworks.each do |homework| %>
+  <%= homework.name %>	
+<% end %>
