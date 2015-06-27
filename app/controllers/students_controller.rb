@@ -21,12 +21,38 @@ class StudentsController < ApplicationController
     @student = Student.new
     @student.user_id = session["user_id"]
     @student.course_id = params["student"]["course_id"]
+    @user = current_user
+    @student.save
     if @student.valid?
-      @student.save
+      @user.students.each do |student|
+        if student == @student
+          student.active = true
+          student.save
+        else
+          student.active = false
+          student.save
+        end
+      student.save
+      end
       redirect_to root_path, notice: "Great, you added a class to your profile!!!"
     else
       render "new"
     end
+  end
+
+  def update
+    @student = Student.find_by(id: params["id"])
+    @user = current_user
+    @user.students.each do |student|
+      if student==@student
+        student.active = true
+        student.save
+      else
+        student.active = false
+        student.save
+      end
+    end
+    redirect_to root_path
   end
 
   def destroy

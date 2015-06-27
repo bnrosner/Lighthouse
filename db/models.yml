@@ -27,6 +27,7 @@ User:
 Student:
   user_id: integer
   course_id: integer
+  active: boolean
 
 HWSubmission:
   student_id: integer

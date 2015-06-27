@@ -14,7 +14,7 @@ class HomeworksController < ApplicationController
     @homework = Homework.new(params["homework"])
     @course = Course.find_by(id: params["course_id"])
     @homework.course_id = @course.id
-    if @homework.save
+    if @homework.valid?
       @course.homeworks.each do |homework|
         if homework == @homework
           homework.active = true

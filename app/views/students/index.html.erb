@@ -1,7 +1,23 @@
 <h3 class="page-header">
   My Classes
   <span class="pull-right">
-    <p><%= link_to "Add a Class", new_student_path, class: 'btn btn-sm btn-success' %></p>
+    <p>
+      <% @students.each do |student| %>
+        <%if student.active%>
+          <%= link_to student.course.name, student_url(student), method:  :patch, class:"btn btn-sm btn-primary"%>
+        <%else%>
+          <%= link_to student.course.name, student_url(student), method:  :patch, class:"btn btn-sm btn-default"%>
+        <%end%>
+      <% end %>
+      <%= link_to "Add a Class", new_student_path, class: 'btn btn-sm btn-success' %>
+      <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-toggle="dropdown">Add a Class
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">HTML</a></li>
+        <li><a href="#">CSS</a></li>
+        <li><a href="#">JavaScript</a></li>
+      </ul>
+    </p>
   </span>
 </h3>
 

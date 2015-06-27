@@ -6,6 +6,14 @@
   </div>
 </div>
 
+<% if @student.errors.any? %>
+  <div class="alert alert-warning" role="alert">
+    <% @student.errors.full_messages.each do |message| %>
+      <%= message %><br>
+    <% end %>
+  </div>
+<% end %>
+
 <%= form_for @student do |form| %>
 <div class = "container">
   <div class="row">
