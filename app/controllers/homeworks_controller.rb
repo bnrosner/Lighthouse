@@ -1,5 +1,6 @@
 class HomeworksController < ApplicationController
  
+  
   def new
     if current_user.admin?
       @homework = Homework.new
@@ -20,4 +21,19 @@ class HomeworksController < ApplicationController
     end
   end
 
+  def update
+    @course = Course.find_by(id: params["course_id"])
+    @homework = Homework.find_by(id: params["id"])
+    @homeworks = Homework.where(course_id: params["course_id"])
+    @homeworks.each do |homework|
+      if homework==@homework
+        homework.active = true
+        homework.save
+      else
+        homework.active = false
+        homework.save
+      end
+    end
+    redirect_to course_url(@course)
+  end
 end

@@ -2,10 +2,15 @@
   My Classes
   <span class="pull-right">
     <p>
-      <%= link_to "Add Homework", new_course_homework_url(@course), class: 'btn btn-sm btn-success' %>
+      <% @course.homeworks.each do |homework| %>	
+        <%if homework.active?%>
+        <%= link_to homework.name, course_homework_url(@course, homework), method:  :patch, class:"btn btn-sm btn-primary"%>
+        <%else%>
+         <%= link_to homework.name, course_homework_url(@course, homework), method:  :patch, class:"btn btn-sm btn-default"%>
+        <%end%>
+      <% end %>
+      <button type="button" class="btn btn-neutral"><%= link_to "Add Homework", new_course_homework_url(@course)%></button>
   </span>
 </h3>
 
-<% @course.homeworks.each do |homework| %>
-  <%= homework.name %>	
-<% end %>
+
