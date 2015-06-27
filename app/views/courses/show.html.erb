@@ -10,7 +10,13 @@
         <%end%>
       <% end %>
       <button type="button" class="btn btn-neutral"><%= link_to "Add Homework", new_course_homework_url(@course)%></button>
+    </p>
   </span>
 </h3>
 
+<% @course.homeworks.each do |homework| %>
+  <% if homework.active == true %>
+    <%= homework.num_questions %>
+  <%end%>
+<%end%>
 
