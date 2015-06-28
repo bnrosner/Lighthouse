@@ -22,7 +22,11 @@
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
         <%@courses.each do |course| %>
-        <li><%= link_to course.name, students_url(course.id), method:  :post%></li>
+          <%@students.each do |student| %>
+            <% if course = student.course %>
+            <li><%= link_to course.name, students_url(course.id), method:  :post%></li>
+            <% end%>
+          <%end%>
         <%end%>
       </ul>
       </div>
