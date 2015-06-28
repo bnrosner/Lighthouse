@@ -1,6 +1,38 @@
 <h3 class="page-header">
   My Classes
-  <span class="pull-right">
+  <div class = "pull-right">
+    <div class = "dropdown">
+      <button class="btn btn-sm btn-danger dropdown-toggle" type="button" data-toggle="dropdown">Delete a Class
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <%@students.each do |student| %>
+        <li><%= link_to student.course.name, student_url(student), method:  :delete, data: {confirm: "Seriously?"} %></li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+
+  <div class = "pull-right">
+  &nbsp
+  </div>
+  
+  <div class="pull-right">
+    <div class="dropdown">
+      <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-toggle="dropdown">Add a Class
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <%@courses.each do |course| %>
+        <li><%= link_to course.name, students_url(course.id), method:  :post%></li>
+        <%end%>
+      </ul>
+      </div>
+    </div>
+  
+  <div class = "pull-right">
+  &nbsp
+  </div>
+
+  <div class="pull-right">
     <p>
       <% @students.each do |student| %>
         <%if student.active%>
@@ -9,16 +41,8 @@
           <%= link_to student.course.name, student_url(student), method:  :patch, class:"btn btn-sm btn-default"%>
         <%end%>
       <% end %>
-      <%= link_to "Add a Class", new_student_path, class: 'btn btn-sm btn-success' %>
-      <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-toggle="dropdown">Add a Class
-      <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><a href="#">HTML</a></li>
-        <li><a href="#">CSS</a></li>
-        <li><a href="#">JavaScript</a></li>
-      </ul>
     </p>
-  </span>
+  </div> 
 </h3>
 
 <ul>

@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
   def index
     @user = current_user
     @students = Student.where(user_id: @user.id)
+    @courses = Course.where(school_id: @user.school_id)
   end
 
   def show
@@ -20,7 +21,8 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new
     @student.user_id = session["user_id"]
-    @student.course_id = params["student"]["course_id"]
+    @course = Course.find_by(id: params["format"])
+    @student.course_id = @course.id
     @user = current_user
     @student.save
     if @student.valid?
