@@ -21,13 +21,13 @@
       <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-toggle="dropdown">Add a Class
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
+        <%student_courses = @students.map {|a| Course.find_by(id: a.course_id)} %>
         <%@courses.each do |course| %>
-          <%@students.each do |student| %>
-            <% if course = student.course %>
+          <%if student_courses.include?(course)==false%>
             <li><%= link_to course.name, students_url(course.id), method:  :post%></li>
-            <% end%>
           <%end%>
         <%end%>
+
       </ul>
       </div>
     </div>
