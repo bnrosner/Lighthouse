@@ -4,6 +4,8 @@ class StudentsController < ApplicationController
     @user = current_user
     @students = Student.where(user_id: @user.id)
     @courses = Course.where(school_id: @user.school_id)
+    @active_student = Student.find_by(active: true)
+    @course = Course.find_by(id: @active_student.course_id)
   end
 
   def show

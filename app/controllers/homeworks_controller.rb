@@ -23,7 +23,7 @@ class HomeworksController < ApplicationController
         end
       homework.save
       end
-      redirect_to course_url(@course)
+      redirect_to root_path
     else
       render "new"
     end
@@ -42,6 +42,6 @@ class HomeworksController < ApplicationController
         homework.save
       end
     end
-    redirect_to course_url(@course)
+    redirect_to root_path
   end
 end
