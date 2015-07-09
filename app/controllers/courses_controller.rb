@@ -14,9 +14,9 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(params["course"])
-    @course.school = @school
+    @course.school = School.find_by(id: current_user.school_id)
     if @course.save
-      redirect_to schools_url
+      redirect_to root_path
     else
       render "new"
     end

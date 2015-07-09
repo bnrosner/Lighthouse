@@ -5,7 +5,9 @@ class StudentsController < ApplicationController
     @students = Student.where(user_id: @user.id)
     @courses = Course.where(school_id: @user.school_id)
     @active_student = Student.find_by(active: true)
-    @course = Course.find_by(id: @active_student.course_id)
+    if @active_student
+      @course = Course.find_by(id: @active_student.course_id)
+    end
   end
 
   def show
@@ -38,9 +40,7 @@ class StudentsController < ApplicationController
         end
       student.save
       end
-      redirect_to root_path, notice: "Great, you added a class to your profile!!!"
-    else
-      render "new"
+      redirect_to new_hwsubmission_url(@student), method:  :post
     end
   end
 

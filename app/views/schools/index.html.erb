@@ -3,6 +3,6 @@
 </h3>
 <p>
   <% @schools.each do |school| %>
-  <%= link_to school.name, new_school_course_url(school), class: 'btn btn-sm btn-success' %></p>
+  <%= link_to school.name, new_course_url(school), class: 'btn btn-sm btn-success' %></p>
   <% end %>
 </p>

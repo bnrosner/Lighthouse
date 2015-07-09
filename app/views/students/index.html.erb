@@ -48,26 +48,30 @@
   </div> 
 </h3>
 
-  <span class="pull-right">
+  <span class="pull-left">
+    <% if @course %>
     <p>
       <% @course.homeworks.each do |homework| %>  
-        <%if homework.active?%>
-        <%= link_to homework.name, course_homework_url(@course, homework), method:  :patch, class:"btn btn-sm btn-primary"%>
+        <%if homework.active == true%>
+          <%= link_to homework.name, course_homework_url(@course, homework), method:  :patch, class:"btn btn-sm btn-primary"%>
         <%else%>
-         <%= link_to homework.name, course_homework_url(@course, homework), method:  :patch, class:"btn btn-sm btn-default"%>
+          <%= link_to homework.name, course_homework_url(@course, homework), method:  :patch, class:"btn btn-sm btn-default"%>
         <%end%>
-      <% end %>
+      <%end%>
       <button type="button" class="btn btn-neutral"><%= link_to "Add Homework", new_course_homework_url(@course)%></button>
-    </p>
+      </p>
+    <% end %>
   </span>
 
   <br></br>
 <h3 class %>
-<span class = "pull-left">
-  <% @course.homeworks.each do |homework| %>
-  <% if homework.active == true %>
-    <%= homework.num_questions %>
+<% if @course %>
+  <span class = "pull-left">
+    <% @course.homeworks.each do |homework| %>
+    <% if homework.active == true %>
+      <%= homework.num_questions %>
+    <%end%>
   <%end%>
-<%end%>
+<% end %>
 </span>
 </h3>
