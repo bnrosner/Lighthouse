@@ -24,7 +24,7 @@ class HomeworksController < ApplicationController
         end
       homework.save
       end
-      redirect_to root_path
+      redirect_to courses_url
     else
       render "new"
     end

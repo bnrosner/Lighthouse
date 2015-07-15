@@ -2,11 +2,11 @@
   My Classes
   <div class = "pull-right">
     <div class = "dropdown">
-      <button class="btn btn-sm btn-danger dropdown-toggle" type="button" data-toggle="dropdown">Delete a Class
+      <button class="btn btn-sm btn-neutral dropdown-toggle" type="button" data-toggle="dropdown">Delete a Class
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
         <%@students.each do |student| %>
-        <li><%= link_to student.course.name, student_url(student), method:  :delete, data: {confirm: "Seriously?"} %></li>
+            <li><%= link_to student.course.name, student_url(student), method:  :delete, data: {confirm: "Seriously?"} %></li>
         <%end%>
       </ul>
     </div>
@@ -18,7 +18,7 @@
   
   <div class="pull-right">
     <div class="dropdown">
-      <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-toggle="dropdown">Add a Class
+      <button class="btn btn-sm btn-neutral dropdown-toggle" type="button" data-toggle="dropdown">Add a Class
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
         <%student_courses = @students.map {|a| Course.find_by(id: a.course_id)} %>
@@ -58,7 +58,6 @@
           <%= link_to homework.name, course_homework_url(@course, homework), method:  :patch, class:"btn btn-sm btn-default"%>
         <%end%>
       <%end%>
-      <button type="button" class="btn btn-neutral"><%= link_to "Add Homework", new_course_homework_url(@course)%></button>
       </p>
     <% end %>
   </span>
@@ -67,11 +66,20 @@
 <h3 class %>
 <% if @course %>
   <span class = "pull-left">
-    <% @course.homeworks.each do |homework| %>
-    <% if homework.active == true %>
-      <%= homework.num_questions %>
-    <%end%>
-  <%end%>
-<% end %>
+    <% @course.homeworks.each do |homework| %>  
+      <% if homework.active == true %>
+        <% hwsubmissions = HWSubmission.where(homework_id: homework.id) %>
+          <% if hwsubmissions.length > 0 %>
+            <%hwsubmissions.each do |hwsubmission| %>
+              <%= hwsubmission.student.user.name%>
+              <%= hwsubmission.homework.num_questions %>
+            <% end %>
+          <% else %>  
+            <%= link_to "Start Homework", hwsubmissions_url(homework.id), method:  :post %>
+          <% end %>  
+      <% end %>
+    <% end %>
+  <% end %>
 </span>
 </h3>
+

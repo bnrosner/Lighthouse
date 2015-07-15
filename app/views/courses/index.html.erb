@@ -1,0 +1,20 @@
+<h3 class="page-header">
+  Courses
+
+  <div class = "pull-right">
+  <%= link_to "New Class", new_course_path, class:"btn btn-sm btn-primary" %>
+  </div>
+</h3>
+<p>
+  <% @courses.each do |course| %>
+  <p>
+      <strong><%= course.name %></strong>
+      <%= link_to "Delete", course_url(course), method:  :delete, data: {confirm: "Seriously?"}, class:"btn btn-sm btn-danger" %>	
+  </p>
+  <p>    
+      <% course.homeworks.each do |homework| %>	
+        <%= homework.name %>
+      <% end %>
+      <button type="button" class="btn btn-neutral"><%= link_to "Add Homework", new_course_homework_url(course)%></button>
+    <% end %>
+  </p>

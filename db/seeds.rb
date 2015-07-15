@@ -17,9 +17,7 @@ princeton = School.create(name: "Princeton")
 # Create courses
 puts "Creating courses..."
 nu_economics = Course.create(name: "Economics", school_id: northwestern.id)
-pt_economics = Course.create(name: "Economics", school_id: princeton.id)
 nu_biology = Course.create(name: "Biology", school_id: northwestern.id)
-pt_biology = Course.create(name: "Biology", school_id: princeton.id)
 
 # Create users
 puts "Creating users..."

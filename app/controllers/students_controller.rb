@@ -40,7 +40,7 @@ class StudentsController < ApplicationController
         end
       student.save
       end
-      redirect_to new_hwsubmission_url(@student), method:  :post
+      redirect_to root_path
     end
   end
 
