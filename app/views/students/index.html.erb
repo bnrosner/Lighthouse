@@ -49,34 +49,50 @@
 </h3>
 
   <span class="pull-left">
-    <% if @course %>
-    <p>
-      <% @course.homeworks.each do |homework| %>  
+    <% active_student = Student.find_by(active: true, user_id: current_user.id) %>
+    <% if !active_student.nil? %>
+      <% active_student.course.homeworks.each do |homework| %>  
         <%if homework.active == true%>
           <%= link_to homework.name, course_homework_url(@course, homework), method:  :patch, class:"btn btn-sm btn-primary"%>
         <%else%>
           <%= link_to homework.name, course_homework_url(@course, homework), method:  :patch, class:"btn btn-sm btn-default"%>
         <%end%>
       <%end%>
-      </p>
-    <% end %>
+    <% end%>
+    </p>
   </span>
 
   <br></br>
 <h3 class %>
-<% if @course %>
-  <span class = "pull-left">
-    <% @course.homeworks.each do |homework| %>  
+<span class = "pull-left">
+  <% if !active_student.nil? %>
+    <% active_student.course.homeworks.each do |homework| %>  
       <% if homework.active == true %>
-        <% hwsubmissions = HWSubmission.where(homework_id: homework.id) %>
-          <% if hwsubmissions.length > 0 %>
-            <%hwsubmissions.each do |hwsubmission| %>
-              <%= hwsubmission.student.user.name%>
-              <%= hwsubmission.homework.num_questions %>
-            <% end %>
-          <% else %>  
-            <%= link_to "Start Homework", hwsubmissions_url(homework.id), method:  :post %>
-          <% end %>  
+         <% hwsubmission = HWSubmission.find_by(homework_id: homework.id, student_id: active_student.id)%>
+         <% if !hwsubmission.nil? %>
+           <ul> <%= hwsubmission.student.user.name %> 
+           <% counter = 1 %>
+           <%=hwsubmission.homework.num_questions.times do %>
+             <%= counter %>
+             <% counter = counter + 1%>
+           <% end %>
+           </ul>
+           <% hwsubmissions = HWSubmission.where(homework_id: homework.id) %>
+           <%hwsubmissions.each do |hw_submission| %>
+             <% if hw_submission != hwsubmission %>
+               <ul>
+               <%= hw_submission.student.user.name%>
+               <% counter = 1 %>
+               <%=hw_submission.homework.num_questions.times do %>
+                 <%= counter %>
+                 <% counter = counter + 1%>
+               <% end %>
+               </ul>
+             <% end %>
+           <% end %>
+        <% else %>
+          <%= link_to "Start Homework", hwsubmissions_url(homework.id), method:  :post %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
