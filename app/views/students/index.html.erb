@@ -68,30 +68,34 @@
   <% if !active_student.nil? %>
     <% active_student.course.homeworks.each do |homework| %>  
       <% if homework.active == true %>
+         <% hwsubmissions = HWSubmission.where(homework_id: homework.id, student_id: active_student.id)%>
          <% hwsubmission = HWSubmission.find_by(homework_id: homework.id, student_id: active_student.id)%>
          <% if !hwsubmission.nil? %>
-           <ul> <%= hwsubmission.student.user.name %> 
+           <%= hwsubmission.student.user.name %> 
+           <p></p>
            <% counter = 1 %>
-           <p><font color = "red"> <%= "Incomplete:" %>
-           <%=hwsubmission.homework.num_questions.times do %>
-             <%= counter %>
-             <% counter = counter + 1%>
-           <% end %> </font></p>
-           </ul>
-           <% hwsubmissions = HWSubmission.where(homework_id: homework.id) %>
-           <%hwsubmissions.each do |hw_submission| %>
-             <% if hw_submission != hwsubmission %>
-               <ul>
-               <%= hw_submission.student.user.name%>
-               <% counter = 1 %>
-               <p><font color = "red"> <%= "Incomplete:" %>
-               <%=hw_submission.homework.num_questions.times do %>
-                 <%= counter %>
-                 <% counter = counter + 1%>
-               <% end %></font></p>
-               </ul>
-             <% end %>
+           <% hwsubmissions.each do |hwsubmission| %>        
+             <font color = "red"> 
+               <%= counter %>
+               <% counter = counter + 1 %>
+             </font>
            <% end %>
+
+           <% students = Student.where(course_id: active_student.course_id) %>
+           <% students.each do |student| %>
+             <% if student.user != current_user %>
+               <p> &nbsp </p>
+               <p><%=student.user.name %></p>
+               <% hw_submissions = HWSubmission.where(homework_id: homework.id, student_id: active_student.id) %>
+               <% counter = 1 %>
+               <%hw_submissions.each do |hw_submission| %>       
+               <font color = "red"> 
+                 <%= counter %>
+                 <% counter = counter + 1 %>
+               </font>
+               <% end %>
+            <% end%>
+          <% end %>
         <% else %>
           <%= link_to "Start Homework", hwsubmissions_url(homework.id), method:  :post %>
         <% end %>
