@@ -71,28 +71,33 @@
          <% hwsubmissions = HWSubmission.where(homework_id: homework.id, student_id: active_student.id)%>
          <% hwsubmission = HWSubmission.find_by(homework_id: homework.id, student_id: active_student.id)%>
          <% if !hwsubmission.nil? %>
-           <%= hwsubmission.student.user.name %> 
+           <%= hwsubmission.student.user.name%> 
            <p></p>
            <% counter = 1 %>
            <% hwsubmissions.each do |hwsubmission| %>        
-             <font color = "red"> 
-               <%= counter %>
-               <% counter = counter + 1 %>
-             </font>
+              <% if hwsubmission.completed == true%>
+                <%= link_to counter, hwsubmission_url(hwsubmission), method:  :patch, class:"btn btn-success"%>
+              <% else %>
+                <%= link_to counter, hwsubmission_url(hwsubmission), method:  :patch, class:"btn btn-danger"%>
+              <% end %>
+              <% counter = counter + 1 %>
            <% end %>
 
            <% students = Student.where(course_id: active_student.course_id) %>
            <% students.each do |student| %>
              <% if student.user != current_user %>
                <p> &nbsp </p>
-               <p><%=student.user.name %></p>
-               <% hw_submissions = HWSubmission.where(homework_id: homework.id, student_id: active_student.id) %>
+               <%=student.user.name%>
+               <p></p>
+               <% hwsubmissions = HWSubmission.where(homework_id: homework.id, student_id: student.id) %>
                <% counter = 1 %>
-               <%hw_submissions.each do |hw_submission| %>       
-               <font color = "red"> 
-                 <%= counter %>
+               <%hwsubmissions.each do |hwsubmission| %>       
+                 <% if hwsubmission.completed == true%>
+                   <button type="button" class="btn btn-success"><%=counter%></button></font>
+                 <% else %> 
+                   <button type="button" class="btn btn-danger"><%=counter%></button></font>
+                 <% end %>
                  <% counter = counter + 1 %>
-               </font>
                <% end %>
             <% end%>
           <% end %>

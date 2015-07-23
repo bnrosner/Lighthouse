@@ -32,6 +32,7 @@ Student:
 HWSubmission:
   student_id: integer
   homework_id: integer
+  completed: boolean
 
 QuestionSubmission:
   hwsubmission_id: integer

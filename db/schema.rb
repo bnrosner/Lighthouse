@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "hw_submissions", force: true do |t|
     t.integer "student_id"
     t.integer "homework_id"
+    t.boolean "completed",   default: false
   end
 
   add_index "hw_submissions", ["homework_id"], name: "index_hw_submissions_on_homework_id"
